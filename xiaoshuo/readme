@@ -1,0 +1,6 @@
+执行方法
+python camouflage.py novelfile
+
+默认得是插在TestBT.py这篇代码里，如有需要自行替换
+
+生成得结果文件在脚本文件的目录下
