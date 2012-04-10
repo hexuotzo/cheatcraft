@@ -36,9 +36,9 @@ def fetch_comic(url, target, start, end):
         time.sleep(5)
 
 if __name__ == '__main__':
-    #ex1(100-150): ./down_comic_batch.py http://mh.cngba.com/mh/99/ onepiece 100 150
-    #ex2(100-now): ./down_comic_batch.py http://mh.cngba.com/mh/99/ onepiece 100
-    #ex3(all): ./down_comic_batch.py http://mh.cngba.com/mh/99/ onepiece
+    #ex1(100-150): ./down_comic_batch.py http://www.imanhua.com/comic/55/ onepiece 100 150
+    #ex2(100-now): ./down_comic_batch.py http://www.imanhua.com/comic/55/ onepiece 100
+    #ex3(all): ./down_comic_batch.py http://www.imanhua.com/comic/55/ onepiece
 
     url, target = sys.argv[1], sys.argv[2]
     #get number of capture range
