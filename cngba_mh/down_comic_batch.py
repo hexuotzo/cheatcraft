@@ -2,7 +2,7 @@
 from lxml.html import parse
 from subprocess import Popen, PIPE
 import sys, os, shutil
-import time
+import time, random
 import lxml.html as HTML
 import urllib2
 from BeautifulSoup import BeautifulSoup
@@ -13,8 +13,8 @@ import re
 #TEMP_JS = 'temp.js'
 
 def get_comic_list(url):
-    e = urllib2.urlopen(url).read().decode('gbk')
-    soup = BeautifulSoup(''.join(e))
+    html = urllib2.urlopen(url).read().decode('gbk')
+    soup = BeautifulSoup(''.join(html))
     a = soup.findAll(attrs={"class":re.compile("^b$")})
     a = a[0].findAll(attrs={"target":"_blank"})
     return a
@@ -36,7 +36,7 @@ def fetch_comic(url, target, start, end):
         furl =  comic.get('href','')
         fname = comic.text
         get_comic(furl, fname, target)
-        time.sleep(5)
+        time.sleep(random.randint(1, 5))
 
 if __name__ == '__main__':
     #ex1(100-150): ./down_comic_batch.py http://www.imanhua.com/comic/55/ onepiece 100 150
