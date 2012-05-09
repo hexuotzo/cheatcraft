@@ -3,18 +3,21 @@ from lxml.html import parse
 from subprocess import Popen, PIPE
 import sys, os, shutil
 import time
-
+import lxml.html as HTML
+import urllib2
+from BeautifulSoup import BeautifulSoup
 from down import main
-
+import re
 
 #MAIN_URL = 'http://www.imanhua.com'
 #TEMP_JS = 'temp.js'
 
 def get_comic_list(url):
-    e = parse(url)
-    r = e.getroot()
-    page = r.cssselect("div.b ul li a")
-    return page
+    e = urllib2.urlopen(url).read().decode('gbk')
+    soup = BeautifulSoup(''.join(e))
+    a = soup.findAll(attrs={"class":re.compile("^b$")})
+    a = a[0].findAll(attrs={"target":"_blank"})
+    return a
 
 def comic_capture(comic, start, end):
     return comic[start:end]
