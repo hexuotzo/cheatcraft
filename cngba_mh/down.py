@@ -2,7 +2,7 @@
 from lxml.html import parse
 from subprocess import Popen, PIPE
 from json import dumps
-import sys, re
+import sys, re , os
 
 def get_script(url):
     e = parse(url)
@@ -24,9 +24,14 @@ def fetch_img(img):
         print "fetch error!"
 
 def zip_file(fname, ext="*.*g"):
-    z = Popen('zip %s %s' % (fname, ext), shell=True)
-    if z.wait()!=0:
-        print "zip error!"
+    dir_name = r'%s' %fname
+    os.makedirs(dir_name)
+    for i in os.listdir("."):
+        if '.jpg' in i:
+            os.rename(i,dir_name+'/'+i)
+    # z = Popen('zip %s %s' % (fname, ext), shell=True)
+    # if z.wait()!=0:
+    #     print "zip error!"
     i = Popen(args='rm %s' % ext, shell=True)
     if i.wait()!=0:
         print "rm error!"
