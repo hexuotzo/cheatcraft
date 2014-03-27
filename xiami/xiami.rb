@@ -40,3 +40,17 @@ ensure
 	body = "Checkin Date => #{Time.now}\nCheckin Result => #{checkin_result}\nCheckin Count => #{checkin_count}"
 	mailenabled ? send_mail(email, body) : (puts body)
 end
+
+
+#python 版在这里... 一样的问题
+#
+#import mechanize
+#url = "https://login.xiami.com/member/login"
+#br = mechanize.Browser()
+#br.set_handle_robots(False)
+#br.addheaders = [('User-agent', 'Firefox')]
+#br.open(url)
+#br.select_form(nr=0)
+#br['email'] = ""
+#br['password'] = ''
+#res = br.submit()
