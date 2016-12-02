@@ -11,13 +11,13 @@ def main():
     #login
     br.open(LOGIN_URL)
     br.select_form(nr=0)
-    br['email'] = ''
-    br['password'] = ''
+    br['email'] = 'hexuotzo@gmail.com'
+    br['password'] = '1101020032'
     br.submit()
 
     #checkin
     br.open(CHECKIN_URL)
-    check_in = br.follow_link(text_regex='每日签到')
+    check_in = br.follow_link(text_regex='签到')
     print check_in.read()
 
 if __name__ == '__main__':
