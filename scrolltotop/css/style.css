@@ -1,0 +1,4 @@
+﻿body { font: normal normal 12px/150% verdana, arial, helvetica, sans-serif; }
+img { border:none; }
+#toTop { width:100px;background:#f1f1f1;border:1px solid #ccc;text-align:center;padding:5px;position:fixed;bottom:10px;right:10px;cursor:pointer;color:#666;text-decoration:none; }
+#content { width:700px;margin:10px auto; }

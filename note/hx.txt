@@ -1,0 +1,90 @@
+Sub hx()
+
+'声明变量
+
+Dim sheet_class, sheet_details As Integer '定义分类表和明细表
+
+Dim class_product, details_product As Integer '定义产品线名称
+
+Dim class_reason, class_q As Integer '定义分类表的缺陷原因,季度的列编号
+
+Dim details_reason, details_q As Integer '定义明细表的缺陷原因,季度的列编号
+
+Dim class_count, details_count '分类表和明细表的行数
+
+Dim class_id, details_id '分类表和明细表ID的列
+
+Dim defect_id '最后写入分类表缺陷ID格的那个值
+
+Dim defect_num, defect_num_position '缺陷个数和缺陷个数的列
+
+Dim sum_value As Integer '求和
+
+
+'初始化 init ,如果excel表结构有变化, 只需要修改这些值即可 (*表示可以改成任意的值,随便改)
+
+sheet_class = 1  '*分类sheet ,1表示 sheet1
+
+sheet_details = 2 '*明细的sheet
+
+class_reason = 2  '*分类表缺陷原因列的编号(A:1  B:2  C:3 ...)
+
+class_q = 3 '*分类表季度列的编号
+
+class_product = 1 '*分类表产品线名称列
+
+details_product = 1 '*明细表产品线名称列
+
+details_reason = 10 '*细化表原因列
+
+details_q = 2 '*细化表季度列
+
+class_id = 5 '*分类表ID列
+ 
+details_id = 5 '*细化表ID列
+
+defect_num_position = 4 '*缺陷个数列
+
+class_count = Worksheets(sheet_class).UsedRange.Rows.Count  '分类表总行数
+
+details_count = Worksheets(sheet_details).UsedRange.Rows.Count '细化表总行数
+
+
+
+
+'逻辑代码
+
+sum_value = 0
+
+For i = 2 To class_count  '第一列是表头,从第2列开始
+    
+  defect_id = ""    '清空原来的内容
+  defect_num = 0  '清空缺陷个数
+  
+  For j = 2 To details_count
+   
+      '判断分类表和细化表的季度和原因都相同,把id增加到defect_id
+      
+      If Sheets(sheet_class).cells(i, class_reason).Value = Sheets(sheet_details).cells(j, details_reason).Value And _
+         Sheets(sheet_class).cells(i, class_q).Value = Sheets(sheet_details).cells(j, details_q).Value And _
+         Sheets(sheet_class).cells(i, class_product).Value = Sheets(sheet_details).cells(j, details_product).Value Then
+         
+         defect_id = Sheets(sheet_details).cells(j, details_id).Value & "," & defect_id
+         
+         defect_num = defect_num + 1
+         
+         sum_value = sum_value + 1
+         
+      End If
+
+  Next j
+  
+  Sheets(sheet_class).cells(i, class_id).Value = defect_id  '把ID写到分类表的id格里
+  
+  Sheets(sheet_class).cells(i, defect_num_position).Value = defect_num '写入缺陷个数
+
+Next i
+
+Sheets(sheet_class).cells(class_count, defect_num_position).Value = sum_value '合计缺陷个数
+
+End Sub
