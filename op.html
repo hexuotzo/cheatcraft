@@ -1,36 +1,54 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-<meta charset="utf-8" > 
-<title>灿华宾馆开业倒计时</title>
-</head> 
-<body onload="leftTimer()"> 
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" /> 
+        <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.css" /> 
+        <script src="http://cdn.gbtags.com/datatables/1.10.5/js/jquery.js"></script> 
+        <script src="http://cdn.gbtags.com/datatables/1.10.5/js/jquery.dataTables.min.js"></script> 
+        <script type="text/javascript" language="javascript" src="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js"></script> 
+    </head>
+<body>
+<div id="container"> 
+ <!-- 定义一个表格元素 --> 
+    <table id="example" class="table table-striped table-bordered"> 
+    <thead> 
+        <tr> 
+            <th>队员1</th> 
+            <th>队员2</th> 
+            <th>队员3</th> 
+        </tr> 
+    </thead> 
+    <tbody>
+        <tr><td>最帅的寨主 </td><td>羽翼园·扛把子  </td><td>白马老僧 </td></tr>
+        <tr><td>jacky邱 </td><td>羽冀园·雷哥 </td><td>棒棒哒 </td></tr>
+        <tr><td>羽翼园•小哥 </td><td>战歌丶苍炎 </td><td>℃arl </td></tr>
+        <tr><td>羽翼园良人痞性 </td><td>羽翼园·幻城 </td><td>羽翼园 淼楠 </td></tr>
+        <tr><td>羽翼园·孔府 </td><td>羽冀园·饕餮 </td><td>人走茶凉 </td></tr>
+        <tr><td>羽翼园·文方夕 </td><td>羽翼园·鸡爷 </td><td>羽翼园.可乐多</td> </tr>
+        <tr><td>雪&妍 </td><td>閊野ソホ寸伕ゞ大叔 </td><td>战歌、蚊子</td> </tr>
+        <tr><td>战歌、百里 </td><td>陈昆 </td><td>战歌、虎 </td></tr>
+        <tr><td>小牛 </td><td>随心 </td><td>羽翼园-战狼 </td></tr>
+        <tr><td>战歌、辣妈 </td><td>战歌丶海儿 </td><td>丢失的初心</td> </tr>
+        <tr><td>紫瞳 </td><td>羽翼园-鬼遁 </td><td>吊大 </td></tr>
+        <tr><td>羽翼园·邪神 </td><td>战歌丶渔夫（959yuxin） </td><td>中青运物流 </td></tr>
+        <tr><td>煜帝. </td><td>羽翼园·蜗牛 </td><td>战歌丶俗人 </td></tr>
+        <tr><td>利刃张建b </td><td>狼烟呜呜 </td><td>悲殤乀述裞微z </td></tr>
+        <tr><td>洋仔 </td><td>战歌、喜欢蓝天 </td><td>颜小吴 </td></tr>
+        <tr><td>寂 </td><td>彭成电脑维修 </td><td>战歌丶流砂 </td></tr>
+        <tr><td>回航 </td><td>羽翼圆·666 </td><td>战歌、嫖客 </td></tr>
+        <tr><td>羽翼园·小欣 </td><td>羽翼园·小倩 </td><td>申花鞋业</td> </tr>
+    </tbody> 
   
-<h2 style="font-size:70px">距离王老板宾馆开业发红包还有:</h2> 
-<div id="timer"  style="font-size:60px"></div> 
-</body> 
-</html>
+  <!-- tbody是必须的 --> 
+ </table> 
+</div> 
+</body>
 
-<script language="javascript" type="text/javascript">  
-function leftTimer(year,month,day,hour,minute,second){ 
-  var leftTime = (new Date(year,month-1,day,hour,minute,second)) - (new Date()); //计算剩余的毫秒数 
-  var days = parseInt(leftTime / 1000 / 60 / 60 / 24 , 10); 
-  var hours = parseInt(leftTime / 1000 / 60 / 60 % 24 , 10); 
-  var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);
-  var seconds = parseInt(leftTime / 1000 % 60, 10);
-  days = checkTime(days); 
-  hours = checkTime(hours); 
-  minutes = checkTime(minutes); 
-  seconds = checkTime(seconds); 
-  setInterval("leftTimer(2018,5,9,0,0,0)",1000); 
-  document.getElementById("timer").innerHTML = days+"天" + hours+"小时" + minutes+"分"+seconds+"秒";  
-} 
-function checkTime(i){ //将0-9的数字前面加上0，例1变为01 
-  if(i<10) 
-  { 
-    i = "0" + i; 
-  } 
-  return i; 
-} 
-  
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "pageLength": 50,
+            "searching": true,
+        });
+    });
 </script>
+</html>
